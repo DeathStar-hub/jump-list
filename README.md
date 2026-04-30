@@ -5,7 +5,7 @@
 | Command | What it does |
 |---------|-------------|
 | `jl myproject` | Direct jump + list |
-| `zi` | Interactive fzf picker + list |
+| `ji` | Interactive fzf picker + list |
 
 ---
 
@@ -24,7 +24,7 @@ zoxide init fish | source
 3. Copy functions:
 ```bash
 mkdir -p ~/.config/fish/functions/
-cp jl.fish zi.fish ~/.config/fish/functions/
+cp jl.fish ji.fish ~/.config/fish/functions/
 ```
 
 4. Restart terminal
@@ -33,7 +33,7 @@ cp jl.fish zi.fish ~/.config/fish/functions/
 
 ```fish
 jl myproject   # Direct jump + list contents
-zi            # Interactive fzf picker + list contents
+ji            # Interactive fzf picker + list contents
 ```
 
 ## How They Work
@@ -44,8 +44,8 @@ function jl
     cd $argv; and ls
 end
 
-# zi - interactive fzf + ls
-function zi
+# ji - interactive fzf + ls
+function ji
     cd (zoxide query --interactive $argv); and ls
 end
 ```
