@@ -1,4 +1,10 @@
-#== j /w ls === last so the jump source runs first=====
+# jl - Jump + List (with optional fzf)
+# Usage: jl           # interactive fzf picker
+#        jl myproject  # direct jump + list
 function jl
-    j $argv; and ls
+    if count $argv > /dev/null
+        cd $argv; and ls
+    else
+        cd (zoxide query --interactive $argv); and ls
+    end
 end

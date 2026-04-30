@@ -1,30 +1,30 @@
 # jl - Jump and List for Fish Shell
 
-**Two functions for faster directory jumping:**
+**One command, two modes:**
 
 | Command | What it does |
 |---------|-------------|
-| `jl myproject` | Direct jump + auto-list |
-| `zi` | Interactive fzf picker + auto-list |
+| `jl` | Interactive fzf picker + list |
+| `jl myproject` | Direct jump + list |
 
 ---
 
 **Quick Install:**
 
-1. Install zoxide (and fzf for `zi`):
+1. Install zoxide (+ fzf for interactive mode):
 ```bash
 sudo pacman -S zoxide fzf
 ```
 
-2. Add to ~/.config/fish/config.fish:
+2. Ensure zoxide initializes in fish (add to ~/.config/fish/config.fish if not already):
 ```fish
-alias cd z
+zoxide init fish | source
 ```
 
-3. Copy both functions:
+3. Copy function:
 ```bash
 mkdir -p ~/.config/fish/functions/
-cp *.fish ~/.config/fish/functions/
+cp jl.fish ~/.config/fish/functions/
 ```
 
 4. Restart terminal
@@ -33,26 +33,27 @@ cp *.fish ~/.config/fish/functions/
 
 ```fish
 jl myproject   # Direct jump + list contents
-zi            # Interactive fzf picker + list contents (fzf must be installed)
+jl            # Interactive fzf picker + list contents
 ```
 
-## How They Work
+## How It Works
 
 ```fish
-# jl - direct jump + ls
 function jl
-    cd $argv; and ls
-end
-
-# zi - interactive fzf + ls
-function zi
-    cd (zoxide query --interactive $argv); and ls
+    if count $argv > /dev/null
+        cd $argv; and ls
+    else
+        cd (zoxide query --interactive $argv); and ls
+    end
 end
 ```
 
-- `cd` = zoxide (alias j z)
-- `zoxide query --interactive` = opens fzf to pick from history
-- `ls` = shows directory contents after jumping
+- With argument: direct jump (like `cd project`)
+- Without argument: opens fzf to pick from directory history
+
+**Requirements:**
+- zoxide
+- fzf (for interactive mode without arguments)
 
 ---
 
