@@ -4,7 +4,7 @@
 
 Instead of typing two commands every time:
 ```
-j myproject
+cd myproject
 ls
 ```
 
@@ -42,13 +42,13 @@ jl              # List all visited directories
 
 ```fish
 function jl
-    j $argv; and ls
+    cd $argv; and ls
 end
 ```
 
-- `j` = zoxide (you get this from zoxide)
+- `cd` = zoxide (using alias j z, so cd actually runs zoxide)
 - `ls` = shows directory contents
-- `and` = only runs ls if j succeeds
+- `and` = only runs ls if cd succeeds
 
 ## Files
 
