@@ -1,10 +1,5 @@
-# jl - Jump + List (with optional fzf)
-# Usage: jl           # interactive fzf picker
-#        jl myproject  # direct jump + list
+# jl - Jump + List
+# Direct jump: jl myproject -> jump to directory and list contents
 function jl
-    if count $argv > /dev/null
-        cd $argv; and ls
-    else
-        cd (zoxide query --interactive $argv); and ls
-    end
+    cd $argv; and ls
 end
