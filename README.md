@@ -42,7 +42,7 @@ Opens fzf to pick from your directory history, then lists the selected directory
 sudo pacman -S zoxide fzf
 ```
 
-2. Ensure zoxide initializes in fish config:
+2. Ensure zoxide initializes in fish config (no alias needed - this replaces cd):
 ```fish
 zoxide init fish | source
 ```
